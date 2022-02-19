@@ -58,3 +58,29 @@ class Black(Formatter):
     def format(self, session: nox.Session, files: list[str], ctx: Ctx = Ctx()):
         ctx += Ctx(args=files)
         self.run(session, ctx)
+
+
+@dataclass
+class ISort(Formatter):
+    """A class for interacting with the isort formatter.
+
+    Args:
+        config: An optional configuration file to pass with all executions.
+    """
+
+    binary: str = "isort"
+    config: str = ""
+
+    def run(self, session: nox.Session, ctx: Ctx = Ctx()):
+        if self.config:
+            ctx += Ctx(flags=["--settings-path", self.config])
+
+        super().run(session, ctx)
+
+    def check(self, session: nox.Session, files: list[str], ctx: Ctx = Ctx()):
+        ctx += Ctx(flags=["--check-only"], args=files)
+        self.run(session, ctx)
+
+    def format(self, session: nox.Session, files: list[str], ctx: Ctx = Ctx()):
+        ctx += Ctx(args=files)
+        self.run(session, ctx)
