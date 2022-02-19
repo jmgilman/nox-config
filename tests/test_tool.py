@@ -18,14 +18,14 @@ def test_ctx_add():
 
 
 def test_tool_run(session: mock.MagicMock):
-    t = tool.Tool("tool")
+    t = tool.Tool("tool", flags=["--flag2"])
     ctx = tool.Ctx(
         flags=["--flag1"], args=["arg1"], env={"env1": "val1"}, test1="test"
     )
 
     t.run(session, ctx)
     session.run.assert_called_once_with(
-        "tool", ctx.flags[0], ctx.args[0], env=ctx.env, test1="test"
+        "tool", ctx.flags[0], "--flag2", ctx.args[0], env=ctx.env, test1="test"
     )
 
 

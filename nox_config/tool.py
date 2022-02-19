@@ -70,10 +70,12 @@ class Tool:
     Attributes:
         binary: The name of the binary for this tool.
         deps: Additional dependencies required to run this tool.
+        flags: A list of flags that are always included in executions.
     """
 
     binary: str
     deps: list[str] = field(default_factory=list)
+    flags: list[str] = field(default_factory=list)
 
     def run(self, session: nox.Session, ctx: Ctx = Ctx()):
         """Runs this tool using the session and context.
@@ -82,6 +84,7 @@ class Tool:
             session: The session to run this tool in.
             ctx: The context to use for running the tool.
         """
+        ctx += Ctx(flags=self.flags)
         session.run(
             self.binary, *ctx.flags, *ctx.args, env=ctx.env, **ctx.kwargs
         )
