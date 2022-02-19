@@ -65,3 +65,25 @@ class Flake8(Linter):
     def lint(self, session: nox.Session, files: list[str], ctx: Ctx = Ctx()):
         ctx += Ctx(args=files)
         self.run(session, ctx)
+
+
+@dataclass
+class Mypy(Linter):
+    """A class for interacting with the mypy linter.
+
+    Args:
+        config: An optional configuration file to pass with all executions.
+    """
+
+    binary: str = "mypy"
+    config: str = ""
+
+    def run(self, session: nox.Session, ctx: Ctx = Ctx()):
+        if self.config:
+            ctx += Ctx(flags=["--config-file", self.config])
+
+        super().run(session, ctx)
+
+    def lint(self, session: nox.Session, files: list[str], ctx: Ctx = Ctx()):
+        ctx += Ctx(args=files)
+        self.run(session, ctx)

@@ -55,3 +55,30 @@ def test_bandit_lint(session: mock.MagicMock):
     session.run.assert_called_once_with(
         "bandit", "--config", "test.conf", "file1", "file2", env={}
     )
+
+
+def test_mypy_run(session: mock.MagicMock):
+    m = linters.Mypy(config="test.conf")
+    ctx = tool.Ctx()
+    m.run(session, ctx)
+
+    session.run.assert_called_once_with(
+        "mypy", "--config-file", "test.conf", env={}
+    )
+
+
+def test_mypy_setup(session: mock.MagicMock):
+    m = linters.Mypy(deps=["dep1"])
+    m.setup(session)
+
+    session.install.assert_called_once_with("mypy", "dep1")
+
+
+def test_mypy_lint(session: mock.MagicMock):
+    m = linters.Mypy(config="test.conf")
+    ctx = tool.Ctx()
+    m.lint(session, ["file1", "file2"], ctx)
+
+    session.run.assert_called_once_with(
+        "mypy", "--config-file", "test.conf", "file1", "file2", env={}
+    )
