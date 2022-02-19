@@ -20,6 +20,10 @@ name: CI
 env:
   POETRY_VERSION: "1.1.12"
   PYTHON_VERSION: "3.10"
+  PYPI_USERNAME: __token__
+  PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+  TEST_PYPI_USERNAME: __token__
+  TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
 
 jobs:
   static:
@@ -52,3 +56,40 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           files: ./coverage.xml
+  test_release:
+    name: Publish to test PyPi
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.ref, 'refs/tags/v')
+    needs: [static, test]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/workflows/composite/setup-python
+        with:
+          python_version: ${{ env.PYTHON_VERSION }}
+          poetry_version: ${{ env.POETRY_VERSION }}
+      - name: Configure PyPi repo
+        run: poetry config repositories.testpypi https://test.pypi.org/legacy/
+      - name: Bump version
+        run: |
+          poetry version patch &&
+          version=$(poetry version | awk '{print $2}') &&
+          poetry version $version.dev.$(date +%s)
+      - name: Build wheel
+        run: poetry build
+      - name: Publish to test PyPi
+        run: poetry publish -r testpypi --username=${{ env.TEST_PYPI_USERNAME }} --password=${{ env.TEST_PYPI_TOKEN }}
+  release:
+    name: Publish to PyPi
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.ref, 'refs/tags/v')
+    needs: [static, test, test_release]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/workflows/composite/setup-python
+        with:
+          python_version: ${{ env.PYTHON_VERSION }}
+          poetry_version: ${{ env.POETRY_VERSION }}
+      - name: Build wheel
+        run: poetry build
+      - name: Publish to PyPi
+        run: poetry publish --username=${{ env.PYPI_USERNAME }} --password=${{ env.PYPI_TOKEN }}

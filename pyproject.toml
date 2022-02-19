@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nox-tools"
-version = "0.1.0"
+version = "0.1.1.dev.1645240589"
 description = "A package for abstracting common tools used in nox configs"
 authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
 license = "MIT"
