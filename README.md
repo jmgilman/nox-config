@@ -1,8 +1,8 @@
 # nox-helpers
 
 <p align="center">
-    <a href="https://github.com/jmgilman/loguricorn/actions/nox-helpers/ci.yml">
-        <img src="https://github.com/jmgilman/loguricorn/actions/nox-helpers/ci.yml/badge.svg"/>
+    <a href="https://github.com/jmgilman/nox-helpers/actions/workflows/ci.yml">
+        <img src="https://github.com/jmgilman/nox-helpers/actions/workflows/ci.yml/badge.svg"/>
     </a>
     <a href="https://pypi.org/project/nox-helpers">
         <img src="https://img.shields.io/pypi/v/nox-helpers"/>
