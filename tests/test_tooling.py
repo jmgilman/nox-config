@@ -1,6 +1,6 @@
 from unittest import mock
 
-from nox_tools import tooling
+from nox_helpers import tooling
 
 
 def test_ctx_add():

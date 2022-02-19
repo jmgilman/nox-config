@@ -1,6 +1,6 @@
 from unittest import mock
 
-from nox_tools import linting, tooling
+from nox_helpers import linting, tooling
 
 
 def test_flake8_run(session: mock.MagicMock):

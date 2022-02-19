@@ -1,6 +1,6 @@
 from unittest import mock
 
-from nox_tools import testing, tooling
+from nox_helpers import testing, tooling
 
 
 def test_pytest_run(session: mock.MagicMock):

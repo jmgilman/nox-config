@@ -1,6 +1,6 @@
 from unittest import mock
 
-from nox_tools import formatting, tooling
+from nox_helpers import formatting, tooling
 
 
 def test_black_run(session: mock.MagicMock):

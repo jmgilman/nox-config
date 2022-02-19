@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 import nox
 
-from nox_tools.tooling import Ctx, Tool
+from nox_helpers.tooling import Ctx, Tool
 
 
 @dataclass
