@@ -5,8 +5,8 @@ description = "A package for abstracting common tools used in nox configs"
 authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/jmgilman/nox-tools"
-repository = "https://github.com/jmgilman/nox-tools"
+homepage = "https://github.com/jmgilman/nox-helpers"
+repository = "https://github.com/jmgilman/nox-helpers"
 keywords = ["nox", "testing", "tooling"]
 
 [tool.poetry.dependencies]
