@@ -24,6 +24,28 @@ class Linter(Tool):
 
 
 @dataclass
+class Bandit(Linter):
+    """A class for interacting with the bandit linter.
+
+    Args:
+        config: An optional configuration file to pass with all executions.
+    """
+
+    binary: str = "bandit"
+    config: str = ""
+
+    def run(self, session: nox.Session, ctx: Ctx = Ctx()):
+        if self.config:
+            ctx += Ctx(flags=["--config", self.config])
+
+        super().run(session, ctx)
+
+    def lint(self, session: nox.Session, files: list[str], ctx: Ctx = Ctx()):
+        ctx += Ctx(args=files)
+        self.run(session, ctx)
+
+
+@dataclass
 class Flake8(Linter):
     """A class for interacting with the flake8 linter.
 
