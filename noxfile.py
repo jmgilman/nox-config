@@ -44,7 +44,7 @@ def test(session: nox.Session):
 @session(python=PYTHON_VERSIONS)
 def coverage(session: nox.Session):
     session.install(".", "pytest", "pytest-cov", "pytest_mock")
-    session.run("pytest", "--cov=nox_tools", "--cov-report=xml", "tests")
+    session.run("pytest", "-v", "--cov=nox_tools", "--cov-report=xml", "tests")
 
 
 def git_files() -> list[str]:
