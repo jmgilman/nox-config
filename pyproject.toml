@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "nox-config"
+name = "nox-tools"
 version = "0.1.0"
 description = "A package for abstracting common tools used in nox configs"
 authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/jmgilman/nox-config"
-repository = "https://github.com/jmgilman/nox-config"
-keywords = ["nox", "configuration", "testing", "tooling"]
+homepage = "https://github.com/jmgilman/nox-tools"
+repository = "https://github.com/jmgilman/nox-tools"
+keywords = ["nox", "testing", "tooling"]
 
 [tool.poetry.dependencies]
 python = "^3.10"

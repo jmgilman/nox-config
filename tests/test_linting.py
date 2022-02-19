@@ -1,11 +1,11 @@
 from unittest import mock
 
-from nox_config import linting, tool
+from nox_tools import linting, tooling
 
 
 def test_flake8_run(session: mock.MagicMock):
     f = linting.Flake8(config="test.conf")
-    ctx = tool.Ctx()
+    ctx = tooling.Ctx()
     f.run(session, ctx)
 
     session.run.assert_called_once_with(
@@ -22,7 +22,7 @@ def test_flake8_setup(session: mock.MagicMock):
 
 def test_flake8_lint(session: mock.MagicMock):
     f = linting.Flake8(config="test.conf")
-    ctx = tool.Ctx()
+    ctx = tooling.Ctx()
     f.lint(session, ["file1", "file2"], ctx)
 
     session.run.assert_called_once_with(
@@ -32,7 +32,7 @@ def test_flake8_lint(session: mock.MagicMock):
 
 def test_bandit_run(session: mock.MagicMock):
     b = linting.Bandit(config="test.conf")
-    ctx = tool.Ctx()
+    ctx = tooling.Ctx()
     b.run(session, ctx)
 
     session.run.assert_called_once_with(
@@ -49,7 +49,7 @@ def test_bandit_setup(session: mock.MagicMock):
 
 def test_bandit_lint(session: mock.MagicMock):
     b = linting.Bandit(config="test.conf")
-    ctx = tool.Ctx()
+    ctx = tooling.Ctx()
     b.lint(session, ["file1", "file2"], ctx)
 
     session.run.assert_called_once_with(
@@ -59,7 +59,7 @@ def test_bandit_lint(session: mock.MagicMock):
 
 def test_mypy_run(session: mock.MagicMock):
     m = linting.Mypy(config="test.conf")
-    ctx = tool.Ctx()
+    ctx = tooling.Ctx()
     m.run(session, ctx)
 
     session.run.assert_called_once_with(
@@ -76,7 +76,7 @@ def test_mypy_setup(session: mock.MagicMock):
 
 def test_mypy_lint(session: mock.MagicMock):
     m = linting.Mypy(config="test.conf")
-    ctx = tool.Ctx()
+    ctx = tooling.Ctx()
     m.lint(session, ["file1", "file2"], ctx)
 
     session.run.assert_called_once_with(
