@@ -27,7 +27,14 @@ def format(session: nox.Session):
 @session(python=PYTHON_VERSIONS)
 def lint(session: nox.Session):
     session.install(
-        "flake8", "bandit", "mypy", "pytest", "pytest_mock", "nox", "toml"
+        "flake8",
+        "bandit",
+        "mypy",
+        "pytest",
+        "pytest_mock",
+        "nox",
+        "nox-poetry",
+        "toml",
     )
 
     session.run("flake8", *py_files())
