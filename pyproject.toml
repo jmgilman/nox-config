@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "nox-config"
+version = "0.1.0"
+description = "A package for abstracting common tools used in nox configs"
+authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/jmgilman/nox-config"
+repository = "https://github.com/jmgilman/nox-config"
+keywords = ["nox", "configuration", "testing", "tooling"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+nox = "^2022.1.7"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+flake8 = "^4.0.1"
+mypy = "^0.931"
+isort = "^5.10.1"
+pytest = "^7.0.1"
+nox-poetry = "^0.9.0"
+pytest-mock = "^3.7.0"
+
+[tool.black]
+line-length = 79
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
