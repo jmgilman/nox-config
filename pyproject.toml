@@ -25,6 +25,13 @@ pytest-mock = "^3.7.0"
 [tool.black]
 line-length = 79
 
+[tool.coverage.report]
+fail_under = 90
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
