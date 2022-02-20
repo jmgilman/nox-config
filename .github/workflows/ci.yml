@@ -39,6 +39,11 @@ jobs:
         run: nox -rs lint
       - name: Run formatters
         run: nox -rs format
+      - name: Run markdown linter
+        uses: nosborn/github-action-markdown-cli@v3.0.1
+        with:
+          files: .
+          config_file: .markdownlint.yaml
   test:
     name: Run test suite
     runs-on: ubuntu-latest
