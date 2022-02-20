@@ -165,10 +165,10 @@ Check out the [issues][2] for items needing attention or submit your own and
 then:
 
 1. [Fork the repo][3]
-2. Create your feature branch (git checkout -b feature/fooBar)
-3. Commit your changes (git commit -am 'Add some fooBar')
-4. Push to the branch (git push origin feature/fooBar)
-5. Create a new Pull Request
+1. Create your feature branch (git checkout -b feature/fooBar)
+1. Commit your changes (git commit -am 'Add some fooBar')
+1. Push to the branch (git push origin feature/fooBar)
+1. Create a new Pull Request
 
 [1]: https://nox.thea.codes/en/stable/
 [2]: https://github.com/jmgilman/nox-helpers/issues
